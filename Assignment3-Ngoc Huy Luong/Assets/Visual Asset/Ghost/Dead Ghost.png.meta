@@ -8,6 +8,24 @@ TextureImporter:
   - first:
       213: 3356905591423158983
     second: Dead Ghost_1
+  - first:
+      213: -64664676592562183
+    second: Dead Ghost_2
+  - first:
+      213: 2014909503172110660
+    second: Dead Ghost_3
+  - first:
+      213: -5719678663524257368
+    second: Dead Ghost_4
+  - first:
+      213: 8350727302481736970
+    second: Dead Ghost_5
+  - first:
+      213: 3057824726585416811
+    second: Dead Ghost_6
+  - first:
+      213: -8935093684838417034
+    second: Dead Ghost_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,9 +72,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -119,10 +137,10 @@ TextureImporter:
       name: Dead Ghost_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 70
-        width: 40
-        height: 46
+        x: 27
+        y: 395
+        width: 82
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +158,10 @@ TextureImporter:
       name: Dead Ghost_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 6
-        width: 54
-        height: 46
+        x: 155
+        y: 395
+        width: 82
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,19 +175,143 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Dead Ghost_2
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 395
+        width: 82
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff4f2ab1d34a1ff0800000000000000
+      internalID: -64664676592562183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dead Ghost_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 267
+        width: 109
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449e127848566fb10800000000000000
+      internalID: 2014909503172110660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dead Ghost_4
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 267
+        width: 110
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a171474f8e9f90b0800000000000000
+      internalID: -5719678663524257368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dead Ghost_5
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 267
+        width: 109
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a057490dc3eb3e370800000000000000
+      internalID: 8350727302481736970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dead Ghost_6
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 139
+        width: 82
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6c978543639f6a20800000000000000
+      internalID: 3057824726585416811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dead Ghost_7
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 11
+        width: 110
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67dbe5042ab200480800000000000000
+      internalID: -8935093684838417034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 68eaf3345e858164e9236062ccae07e2
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Dead Ghost_0: -183302148270240927
-      Dead Ghost_1: 3356905591423158983
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

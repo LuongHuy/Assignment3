@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 8066979718856028948
     second: Special Pellet_0
+  - first:
+      213: -7400325664350259049
+    second: Special Pellet_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,9 +54,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -116,19 +119,40 @@ TextureImporter:
       name: Special Pellet_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 13
-        width: 36
-        height: 40
+        x: 36
+        y: 156
+        width: 68
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 413b1b8405ba3ff60800000000000000
-      internalID: 8066979718856028948
+      spriteID: cd46462684a878a47933b56424c64441
+      internalID: -1940536219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Special Pellet_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 28
+        width: 68
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d46a698af3b145d4e8350d72edb7b708
+      internalID: 2008441166
       vertices: []
       indices: 
       edges: []
@@ -136,7 +160,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ff0698f3f63ef2142804a409b0968ff6
     internalID: 0
     vertices: []
     indices: 
@@ -144,7 +168,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Special Pellet_0: 8066979718856028948
+      Special Pellet_0: -1940536219
+      Special Pellet_1: 2008441166
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -8,6 +8,24 @@ TextureImporter:
   - first:
       213: 3502134799095076175
     second: Scare Ghost_1
+  - first:
+      213: 5867076911726263791
+    second: Scare Ghost_2
+  - first:
+      213: -5268023262426291124
+    second: Scare Ghost_3
+  - first:
+      213: -9090055620764540849
+    second: Scare Ghost_4
+  - first:
+      213: 2267983233029427180
+    second: Scare Ghost_5
+  - first:
+      213: -3669267399275525687
+    second: Scare Ghost_6
+  - first:
+      213: 2631875342277051212
+    second: Scare Ghost_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,9 +72,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -119,10 +137,10 @@ TextureImporter:
       name: Scare Ghost_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 69
-        width: 42
-        height: 48
+        x: 27
+        y: 395
+        width: 82
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +158,10 @@ TextureImporter:
       name: Scare Ghost_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 5
-        width: 55
-        height: 48
+        x: 155
+        y: 395
+        width: 82
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,6 +171,132 @@ TextureImporter:
       bones: []
       spriteID: f45989f6b051a9030800000000000000
       internalID: 3502134799095076175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scare Ghost_2
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 395
+        width: 82
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fedf659bd5b0c6150800000000000000
+      internalID: 5867076911726263791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scare Ghost_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 267
+        width: 109
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c44269601c834e6b0800000000000000
+      internalID: -5268023262426291124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scare Ghost_4
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 267
+        width: 110
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4069c7f292a9d180800000000000000
+      internalID: -9090055620764540849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scare Ghost_5
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 267
+        width: 109
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cefc241fbbe797f10800000000000000
+      internalID: 2267983233029427180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scare Ghost_6
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 139
+        width: 82
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c9c240bdb4241dc0800000000000000
+      internalID: -3669267399275525687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Scare Ghost_7
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 11
+        width: 110
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c438885fdac468420800000000000000
+      internalID: 2631875342277051212
       vertices: []
       indices: 
       edges: []
@@ -167,9 +311,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Scare Ghost_0: -7517341749246189039
-      Scare Ghost_1: 3502134799095076175
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
