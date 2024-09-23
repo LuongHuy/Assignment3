@@ -4,7 +4,7 @@ using UnityEditor.Animations;
 using UnityEditorInternal;
 using UnityEngine;
 
-public class ChangeDirection : MonoBehaviour
+public class PacStudentChangeDirection : MonoBehaviour
 {
     public Animator animatorController;
     public bool IsDead;
