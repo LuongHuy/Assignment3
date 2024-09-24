@@ -9,8 +9,8 @@ public class PacStudentChangeDirection : MonoBehaviour
     public Animator animatorController;
     public bool IsDead;
 
-    private float changeDirectionInterval = 3f;
-    private string[] directions = { "left", "up", "down", "right" };
+    private float changeDirectionInterval = 1.38f;
+    private string[] directions = { "right", "down", "left", "up" };
     private int currentDirectionIndex = 0;
 
     void Start()
@@ -30,6 +30,7 @@ public class PacStudentChangeDirection : MonoBehaviour
         {
             if (!IsDead)
             {
+                Debug.Log($"Changing direction to: {directions[currentDirectionIndex]}");
                 animatorController.SetTrigger(directions[currentDirectionIndex]);
                 currentDirectionIndex = (currentDirectionIndex + 1) % directions.Length;
             }
