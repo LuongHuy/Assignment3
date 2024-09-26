@@ -46093,9 +46093,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f039a13db084b004f84301eea514cb47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animControl: {fileID: 0}
+  animControl: {fileID: 1649650009}
   directionInterval: 1.37
   IsDead: 1
+--- !u!95 &1649650009 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4618188618517896924, guid: 68cb069f13cd14a4584c61a025e46f7d, type: 3}
+  m_PrefabInstance: {fileID: 1360640635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1650735112
 GameObject:
   m_ObjectHideFlags: 0
@@ -58923,9 +58928,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f039a13db084b004f84301eea514cb47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animControl: {fileID: 0}
+  animControl: {fileID: 4046831799995500523}
   directionInterval: 1.37
   IsDead: 0
+--- !u!95 &4046831799995500523 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4618188618517896924, guid: 68cb069f13cd14a4584c61a025e46f7d, type: 3}
+  m_PrefabInstance: {fileID: 4046831799995500513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6525266038183580564
 PrefabInstance:
   m_ObjectHideFlags: 0
