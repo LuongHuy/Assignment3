@@ -1,64 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.VersionControl.Asset;
 
 public class GhostDirectionControl : MonoBehaviour
 {
-    public Animator animatorController;   
-    private float changeDirectionInterval = 2f;
-    private float changeStateInterval = 3f;
+    public Animator animControl;
+    private float directionInterval = 2f;
+    private float stateInterval = 3f;
     private string[] directions = { "Down", "Right", "Up", "Left" };
-    private int currentDirectionIndex = 0;
-    private int currentStateIndex = 0;
+    private int curDirection = 0;
+    private int curState = 0;
 
     public int GhostNumber;
 
-    private readonly string[] states = { "IsWalk", "IsScare", "IsDead", "IsRevive" };
-
+    private string[] states = { "IsWalk", "IsScare", "IsDead", "IsRevive" };
 
     void Start()
     {
-        animatorController.SetTrigger(directions[currentDirectionIndex]);
+        animControl.SetTrigger(directions[curDirection]);
         SetState("IsWalk");
         SetParameter(GhostNumber);
-        StartCoroutine(ChangeDirectionCoroutine());
-        StartCoroutine(ChangeStateCoroutine());
-    }
-
-    void Update()
-    {
-
-    }
-
-    private IEnumerator ChangeDirectionCoroutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(changeDirectionInterval);
-            currentDirectionIndex = (currentDirectionIndex + 1) % directions.Length;
-            animatorController.SetTrigger(directions[currentDirectionIndex]);
-        }
-    }
-    private IEnumerator ChangeStateCoroutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(changeStateInterval);
-            currentStateIndex = (currentStateIndex + 1) % states.Length;
-            SetState(states[currentStateIndex]);
-        }
+        StartCoroutine(StateChange());
+        StartCoroutine(DirectionChange());
     }
     private void SetState(string state)
     {
         foreach (string s in states)
         {
-            animatorController.SetBool(s, false);
+            animControl.SetBool(s,false);
         }
-        animatorController.SetBool(state, true);
+        animControl.SetBool(state,true);
     }
+
     private void SetParameter(int value)
     {
-        animatorController.SetInteger("GhostNo", value); 
+        animControl.SetInteger("GhostNo", value);
+    }
+
+    private IEnumerator StateChange()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(stateInterval);
+            curState = (curState + 1) % states.Length;
+            SetState(states[curState]);
+        }
+    }
+
+    private IEnumerator DirectionChange()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(directionInterval);
+            curDirection = (curDirection + 1) % directions.Length;
+            animControl.SetTrigger(directions[curDirection]);
+        }    
     }
 }
