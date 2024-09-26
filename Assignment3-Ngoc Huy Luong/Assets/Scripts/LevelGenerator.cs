@@ -56,10 +56,7 @@ public class LevelGenerator : MonoBehaviour
                 GameObject tilePrefab = GetPrefab(tileType);
                 GameObject tile = Instantiate(tilePrefab, intiatePos, rotation);
                 tile.transform.SetParent(transform);
-                if (tileType == 1)
-                {
-                    continue;
-                }
+               
 
                 if (tileType == 2)
                 {
