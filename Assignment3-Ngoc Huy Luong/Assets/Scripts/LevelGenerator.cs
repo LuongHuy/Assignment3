@@ -58,7 +58,12 @@ public class LevelGenerator : MonoBehaviour
                 GameObject tilePrefab = GetPrefabFromType(tileType);
                 GameObject tile = Instantiate(tilePrefab, position, rotation);
                 tile.transform.SetParent(transform);
-                
+
+                if (tileType == 1)
+                {
+                    continue;
+                }
+
                 if (tileType == 2)
                 {
                     if (y == 0 || y == collumn - 1)
@@ -96,8 +101,89 @@ public class LevelGenerator : MonoBehaviour
                     }
                 }
 
+                if (tileType == 4)
+                {
+                    int nextTile = fullMap[x, y + 1];
+                    int reverseTile = fullMap[x, y - 1];                  
+                    if (tileType != nextTile && tileType != reverseTile)
+                    {
+                        tile.transform.Rotate(0, 0, 90);
+                    }
+                    else if (nextTile == 5 || reverseTile == 5 || nextTile == 0 || reverseTile == 0)
+                    {
+                        if (tileType != nextTile || tileType != reverseTile) 
+                        {
+                            tile.transform.Rotate(0, 0, 90);
+                        }                       
+                    }
+                    
+                }
 
-                tileBase[x, y] = tile;
+                if (tileType == 3)
+                {
+                    int nextTile = fullMap[x, y + 1];
+                    int reverseTile = fullMap[x, y - 1];
+                    int upTile = fullMap[x - 1, y];
+                    int downTile = fullMap[x + 1, y];
+                    if (nextTile == 4 && upTile == 4)
+                    {
+                        tile.transform.Rotate(0, 0, 90);
+                    }
+                    if (reverseTile == 4 && downTile == 4)
+                    {
+                        tile.transform.Rotate(0, 0, -90);
+                    }
+                    if (reverseTile == 4 && upTile == 4)
+                    {
+                        tile.transform.Rotate(0, 0, 180);
+                    }
+                    
+                    if (nextTile == 4 && upTile == 3)
+                    {
+                        tile.transform.Rotate(0, 0, 90);
+                    }
+                    if (reverseTile == 4 && upTile == 3)
+                    {
+                        tile.transform.Rotate(0, 0, 180);
+                    }
+                    if (reverseTile == 4 && downTile == 3)
+                    {
+                        tile.transform.Rotate(0, 0, -90);
+                    }
+                    if (nextTile == 3 && upTile == 4)
+                    {
+                        tile.transform.Rotate(0, 0, 90);
+                    }
+                    if (reverseTile == 3 && upTile == 4)
+                    {
+                        tile.transform.Rotate(0, 0, 180);
+                    }
+                    if (reverseTile == 3 && downTile == 4)
+                    {
+                        tile.transform.Rotate(0, 0, -90);
+                    }
+                    if (nextTile == 4 && downTile == 3 && upTile == 4)
+                    {
+                        tile.transform.Rotate(0, 0, -90);
+                    }
+                    if (nextTile == 4 && downTile == 4 && reverseTile == 4)
+                    {
+                        tile.transform.Rotate(0, 0, 360);
+                    }
+                }
+
+                if (tileType == 7)
+                {
+                    int nextTile = fullMap[x, y + 1];
+                    int reverseTile = fullMap[x, y - 1];                  
+                    if( reverseTile == 7 && nextTile == 2)
+                    {
+                        tile.transform.Rotate(0, 180, 0);
+                    }
+
+                }
+
+                    tileBase[x, y] = tile;
             }
         }
         mainCamera.transform.position = new Vector3(row / 2 * 0.3f, collumn / 2 * -0.3f, -10);
