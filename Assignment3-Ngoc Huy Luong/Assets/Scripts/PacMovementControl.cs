@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PacMovementControl : MonoBehaviour
 {
-    public float moveSpeed = 2f;
-    public Vector3[] targetPoints;
+    public float moveSpeed = 1f;
+    public Vector3[] targets;
     private Animator animator;
     private AudioSource audioSource;
 
-    public Vector3 CurrentDirection { get; private set; }   
+    public Vector3 CurDirections { get;private set; }
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -21,77 +21,70 @@ public class PacMovementControl : MonoBehaviour
     private IEnumerator MoveAround()
     {
         int targetIndex = 0;
-
         while (true)
         {
             Vector3 start = transform.position;
-            Vector3 end = targetPoints[targetIndex];
-            float journeyLength = Vector3.Distance(start, end);
-            float journeyProgress = 0f;
+            Vector3 end = targets[targetIndex];
+            float jourLength = Vector3.Distance(start, end);
+            float jourProgress = 0f;
 
-            CurrentDirection = (end - start).normalized;
-
-            if (Mathf.Abs(CurrentDirection.x) > Mathf.Abs(CurrentDirection.y))
+            CurDirections = (end - start);
+            if (Mathf.Abs(CurDirections.x) > Mathf.Abs(CurDirections.y))
             {
-                animator.SetBool("IsWalkLeft", CurrentDirection.x < 0);
-                animator.SetBool("IsWalkRight", CurrentDirection.x > 0);
+                animator.SetBool("IsWalkLeft", CurDirections.x < 0);
+                animator.SetBool("IsWalkRight", CurDirections.x > 0);
             }
             else
             {
-                animator.SetBool("IsWalkUp", CurrentDirection.y > 0);
-                animator.SetBool("IsWalkDown", CurrentDirection.y < 0);
+                animator.SetBool("IsWalkUp", CurDirections.y >0);
+                animator.SetBool("IsWalkDown", CurDirections.y < 0);
             }
-
             animator.SetBool("IsWalk", true);
-            PlayWalkingAudio();
+            PlayWalkAudio();
 
-
-            while (journeyProgress < journeyLength)
+            while(jourProgress < jourLength) 
             {
-                journeyProgress += moveSpeed * Time.deltaTime;
-                float fraction = journeyProgress / journeyLength;
+                jourProgress += moveSpeed * Time.deltaTime;
+                float fraction = jourProgress / jourLength;
                 transform.position = Vector3.Lerp(start, end, fraction);
                 yield return null;
             }
-            targetIndex = (targetIndex + 1) % targetPoints.Length;
+            targetIndex = (targetIndex + 1) % targets.Length;
 
             animator.SetBool("IsWalk", false);
-            StopWalkingAudio();
-
-            animator.SetBool("IsWalk", false);
+            StopWalkAudio();
             animator.SetBool("IsWalkLeft", false);
             animator.SetBool("IsWalkRight", false);
             animator.SetBool("IsWalkUp", false);
             animator.SetBool("IsWalkDown", false);
 
             yield return new WaitForSeconds(0.1f);
-
         }
     }
 
-    private void PlayWalkingAudio()
+    private void PlayWalkAudio()
     {
-        if (!audioSource.isPlaying)
+        if(!audioSource.isPlaying)
         {
             audioSource.Play();
-            StartCoroutine(RepeatAudio()); 
+            StartCoroutine(RepeatAudio());
         }
-    }
-    private void StopWalkingAudio()
+    }    
+   
+    private void StopWalkAudio()
     {
-        audioSource.Stop(); 
+        audioSource.Stop();
     }
 
     private IEnumerator RepeatAudio()
     {
-        while (audioSource.isPlaying)
+        while(audioSource.isPlaying)
         {
             yield return new WaitForSeconds(0.5f);
-            if (audioSource.isPlaying)
+            if(audioSource.isPlaying) 
             {
-                audioSource.PlayOneShot(audioSource.clip);
+                audioSource.PlayOneShot(GetComponent<AudioSource>().clip);
             }
         }
     }
 }
-
