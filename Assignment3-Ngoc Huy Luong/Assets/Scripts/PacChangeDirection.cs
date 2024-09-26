@@ -7,11 +7,11 @@ public class PacChangeDirection : MonoBehaviour
     public Animator animControl;
     public float directionInterval = 1.37f;
     public bool IsDead;
-    private PacMovementControl pacControl;
+    private PacMovementManager pacControl;
     
     void Start()
     {
-        pacControl = GetComponent<PacMovementControl>();
+        pacControl = GetComponent<PacMovementManager>();
         animControl.SetBool("isDead?", IsDead);
         StartCoroutine(DirectionChange());
     }
@@ -21,7 +21,7 @@ public class PacChangeDirection : MonoBehaviour
         {
             if (!IsDead)
             {
-                Vector3 currentDirection = pacControl.CurDirections;
+                Vector3 currentDirection = pacControl.distanceVec;
 
                 if (currentDirection.x > currentDirection.y)
                 {
