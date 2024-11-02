@@ -16258,20 +16258,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7540978485138822786, guid: 68cb069f13cd14a4584c61a025e46f7d, type: 3}
   m_PrefabInstance: {fileID: 4046831799995500513}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &584944242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584944235}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 452dbffdf67a7954c9ef3cce0261dfe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  targetPoints: []
 --- !u!114 &584944249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16285,6 +16271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  particlePrefab: {fileID: 1158790779}
 --- !u!58 &584944250
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -56142,10 +56129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Musics:
-  - {fileID: 8300000, guid: 098e6743a88f37642b3e00799a4d9617, type: 3}
   - {fileID: 8300000, guid: 72a6c352afb8a0d4e9133b555572f492, type: 3}
-  - {fileID: 8300000, guid: 431df08986e78264bb7d8f5f8d12c2ea, type: 3}
-  - {fileID: 8300000, guid: 2c2c3fe6f47d36141bbf449324541199, type: 3}
 --- !u!1 &1958057521
 GameObject:
   m_ObjectHideFlags: 0
@@ -61611,9 +61595,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7540978485138822786, guid: 68cb069f13cd14a4584c61a025e46f7d, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 584944242}
     - targetCorrespondingSourceObject: {fileID: 7540978485138822786, guid: 68cb069f13cd14a4584c61a025e46f7d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 584944249}
