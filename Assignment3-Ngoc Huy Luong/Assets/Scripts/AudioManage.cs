@@ -19,7 +19,6 @@ public class AudioManager1 : MonoBehaviour
     {
         bgm.clip = Musics[curSong];
         bgm.Play();
-        curSong++;
         StartCoroutine(WaitSongEnd());
     }
     private IEnumerator WaitSongEnd()

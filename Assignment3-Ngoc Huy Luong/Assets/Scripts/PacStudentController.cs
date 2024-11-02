@@ -1,124 +1,170 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Claims;
 using UnityEngine;
 
 public class PacStudentController : MonoBehaviour
 {
-    public float Speed = 3f;
+   
+
+    private int[] validMovementValues = { 0, 5,6 };
+    public float moveSpeed = 1f;
     private Vector3 targetPosition;
-    private bool isMoving = false;
-    private Vector3 direction;
-    private string lastInput;
+    private int currentX;
+    private int currentY;
+    private GameObject[,] tileBase;
+    private KeyCode lastInput, currentInput;
+   
 
-    private AudioSource audioSource;
-    private float soundInterval = 1f;
-    private Coroutine soundCoroutine;
+    public GameObject GetTileAtMapPosition(int mapX, int mapY)
+    {
 
-    public GameObject particlePrefab;
-    private GameObject particleInstance;
+        if (mapX >= 0 && mapX < LevelGenerator.instance.fullMap.GetLength(1) && mapY >= 0 && mapY < LevelGenerator.instance.fullMap.GetLength(0))
+        {
+
+            return tileBase[mapY, mapX]; 
+        }
+
+        return null;
+    }
+
     void Start()
     {
+        tileBase = LevelGenerator.instance.tileBase;
+
+        currentX = 1;
+        currentY = 1; 
+        transform.position = GetTileAtMapPosition(currentX, currentY).transform.position;
         targetPosition = transform.position;
-        lastInput = "";
-        audioSource = GetComponent<AudioSource>();
+
     }
 
     void Update()
     {
-        HandleInput();
-        MovePacStudent();
-        Debug.Log(lastInput);
-        Debug.Log(soundCoroutine);
-    }
-
-    private void HandleInput()
-    {
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            lastInput = "W";
-            direction = new Vector3(0, 1, 0);
-            UpdateTargetPosition();
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            lastInput = "S";
-            direction = new Vector3(0, -1, 0);
-            UpdateTargetPosition();
+            currentInput = KeyCode.W;
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            lastInput = "A";
-            direction = new Vector3(-1, 0, 0);
-            UpdateTargetPosition();
+            currentInput = KeyCode.A;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            currentInput = KeyCode.S;
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            lastInput = "D";
-            direction = new Vector3(1, 0, 0);
-            UpdateTargetPosition();
+            currentInput = KeyCode.D;
         }
-        else if (Input.GetKeyDown(KeyCode.L))
+        if (CheckMoveDirection())
         {
-            lastInput = "L";           
-            isMoving = false;
+            lastInput = currentInput;
         }
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         
-    }
-
-    private void UpdateTargetPosition()
-    {
-        targetPosition = transform.position + direction;
-        isMoving = true;     
-      
-     
-    }
-    private void MovePacStudent()
-    {
-        if (isMoving)
+        if (Vector3.Distance(transform.position, targetPosition) < 0.05f)
         {
-            float step = Speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);   
-
-            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+            if (currentX == 0 && currentY == 14)
             {
-                transform.position = targetPosition;
-                targetPosition += direction;
-               
+                currentX = 27;               
             }
-            if (soundCoroutine == null)
+            else if (currentX == 27 && currentY == 14)
             {
-                soundCoroutine = StartCoroutine(PlaySound());
+                currentX = 0;              
             }
-            if (particleInstance == null) 
-            { 
-                particleInstance = Instantiate(particlePrefab,transform.position, Quaternion.identity);
-                particleInstance.transform.parent = transform;
-            }
-        }
-        else
-        {
-            if (soundCoroutine != null)
-            {
-                StopCoroutine(soundCoroutine);
-                soundCoroutine = null;
-                audioSource.Stop();
-            }
-            if (particleInstance != null)
-            {
-                Destroy(particleInstance);
-                particleInstance = null;
-            }
+            transform.position = GetTileAtMapPosition(currentX, currentY).transform.position;
+            MoveInLastDirection();
         }
     }
 
-    private IEnumerator PlaySound()
+    private void MoveInLastDirection()
     {
-        while (isMoving)
+        int moveX = 0;
+        int moveY = 0;
+
+        switch (lastInput)
         {
-            audioSource.Play();
-            yield return new WaitForSeconds(soundInterval);
-        }    
+            case KeyCode.W:
+                moveY = -1; 
+                break;
+            case KeyCode.A:
+                moveX = -1; 
+                break;
+            case KeyCode.S:
+                moveY = 1; 
+                break;
+            case KeyCode.D:
+                moveX = 1; 
+                break;
+        }
+
+            MovePlayer(moveX, moveY);
+
+    }
+
+    private void MovePlayer(int moveX, int moveY)
+    {
+        int newX = currentX + moveX;
+        int newY = currentY + moveY;
+
+        if (newX >= 0 && newX < LevelGenerator.instance.fullMap.GetLength(1) && newY >= 0 && newY < LevelGenerator.instance.fullMap.GetLength(0))
+        {
+
+            if (IsValidMove(LevelGenerator.instance.fullMap[newY, newX]))
+            {
+                currentX = newX;
+                currentY = newY;
+
+                targetPosition = GetTileAtMapPosition(currentX, currentY).transform.position;
+                lastInput = currentInput;
+            }
+        }
+    }
+
+    private bool CheckMoveDirection()
+    {
+        int moveX = 0;
+        int moveY = 0;
+
+        switch (currentInput)
+        {
+            case KeyCode.W:
+                moveY = -1;
+                break;
+            case KeyCode.A:
+                moveX = -1;
+                break;
+            case KeyCode.S:
+                moveY = 1;
+                break;
+            case KeyCode.D:
+                moveX = 1;
+                break;
+        }
+        int newX = currentX + moveX;
+        int newY = currentY + moveY;
+
+        if (newX >= 0 && newX < LevelGenerator.instance.fullMap.GetLength(1) && newY >= 0 && newY < LevelGenerator.instance.fullMap.GetLength(0))
+        {
+
+            if (IsValidMove(LevelGenerator.instance.fullMap[newY, newX]))
+            {
+               return true;
+            }
+        }
+        return false;
+    }
+    private bool IsValidMove(int tileValue)
+    {
+
+        foreach (int validValue in validMovementValues)
+        {
+            if (tileValue == validValue)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

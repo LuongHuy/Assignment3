@@ -24,20 +24,24 @@ public class LevelGenerator : MonoBehaviour
 {2,2,2,2,2,1,5,3,3,0,4,0,0,0},
 {0,0,0,0,0,0,5,0,0,0,4,0,0,0},
     };
+    public int[,] fullMap;
     public GameObject[] tileMapPrefab;
-    private GameObject[,] tileBase;
+    public GameObject[,] tileBase;
     public GameObject mainCamera;
-
-   
+    public static LevelGenerator instance;
+    private void Awake()
+    {
+        instance = this;       
+        GenerateLevel();
+    }
     void Start()
     {
         Destroy(GameObject.Find("Level1"));
-        GenerateLevel();
     }
 
     void GenerateLevel()
     {
-        var fullMap = CreateFullMap(levelMap);
+        fullMap = CreateFullMap(levelMap);
         int row = fullMap.GetLength(0);
         int col = fullMap.GetLength(1);
         tileBase= new GameObject[row, col];
@@ -46,15 +50,13 @@ public class LevelGenerator : MonoBehaviour
             for (int y = 0; y < col; y++)
             {
                 int tileType = fullMap[x, y];
-                if (tileType == 0)
-                {
-                    continue;
-                }
+
                 Vector3 intiatePos = new Vector3(y * 0.3f, x * -0.3f, 0);
                 Quaternion rotation = Quaternion.identity;
 
                 GameObject tilePrefab = GetPrefab(tileType);
                 GameObject tile = Instantiate(tilePrefab, intiatePos, rotation);
+                tile.name = tile.name + "(" + x + "," + y + ")";
                 tile.transform.SetParent(transform);
                
 
