@@ -5,13 +5,11 @@ using UnityEngine;
 public class PacChangeDirection : MonoBehaviour
 {
     public Animator animControl;
-    public float directionInterval = 1.37f;
     public bool IsDead;
-    private PacMovementManager pacControl;
+
     
     void Start()
     {
-        pacControl = GetComponent<PacMovementManager>();
         animControl.SetBool("isDead?", IsDead);
         StartCoroutine(DirectionChange());
     }
@@ -21,20 +19,29 @@ public class PacChangeDirection : MonoBehaviour
         {
             if (!IsDead)
             {
-                Vector3 currentDirection = pacControl.distanceVec;
+                animControl.SetBool("IsWalkLeft", false);
+                animControl.SetBool("IsWalkRight", false);
+                animControl.SetBool("IsWalkUp", false);
+                animControl.SetBool("IsWalkDown", false);
 
-                if (currentDirection.x > currentDirection.y)
+                if (Input.GetKeyDown(KeyCode.A))
                 {
-                    animControl.SetBool("IsWalkLeft", currentDirection.x < 0);
-                    animControl.SetBool("IsWalkRight", currentDirection.x > 0);
+                    animControl.SetBool("IsWalkLeft", true);
                 }
-                else
+                else if (Input.GetKeyDown(KeyCode.D))
                 {
-                    animControl.SetBool("IsWalkUp", currentDirection.y > 0);
-                    animControl.SetBool("IsWalkDown", currentDirection.y < 0);
+                    animControl.SetBool("IsWalkRight", true);
+                }                         
+                else if (Input.GetKeyDown(KeyCode.W))
+                {
+                animControl.SetBool("IsWalkUp", true);
                 }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    animControl.SetBool("IsWalkDown", true);
+                }                              
             }
-            yield return new WaitForSeconds(directionInterval);
+            yield return null;
         }      
     }
 
