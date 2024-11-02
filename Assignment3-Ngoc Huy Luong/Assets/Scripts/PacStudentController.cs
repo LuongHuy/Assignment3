@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PacStudentController : MonoBehaviour
 {
@@ -13,7 +14,15 @@ public class PacStudentController : MonoBehaviour
     private int currentY;
     private GameObject[,] tileBase;
     private KeyCode lastInput, currentInput;
-   
+
+    private AudioSource audioSource;
+    private float soundInterval = 2f;
+    private Coroutine soundCoroutine;
+
+    public GameObject particlePrefab;
+    private GameObject particleInstance;
+
+    private bool isMove;
 
     public GameObject GetTileAtMapPosition(int mapX, int mapY)
     {
@@ -35,6 +44,7 @@ public class PacStudentController : MonoBehaviour
         currentY = 1; 
         transform.position = GetTileAtMapPosition(currentX, currentY).transform.position;
         targetPosition = transform.position;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -100,7 +110,11 @@ public class PacStudentController : MonoBehaviour
         }
 
             MovePlayer(moveX, moveY);
-
+        if (particleInstance == null)
+        {
+            particleInstance = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+            particleInstance.transform.parent = transform;
+        }
     }
 
     private void MovePlayer(int moveX, int moveY)
@@ -117,7 +131,29 @@ public class PacStudentController : MonoBehaviour
                 currentY = newY;
 
                 targetPosition = GetTileAtMapPosition(currentX, currentY).transform.position;
+                
                 lastInput = currentInput;
+
+                if(soundCoroutine == null)
+                {
+                    soundCoroutine = StartCoroutine(PlaySound());
+                }
+                isMove = true;
+            }
+            if (!isMove)
+            {
+                if(soundCoroutine != null)
+                {
+                    StopCoroutine(soundCoroutine);
+                    soundCoroutine = null;
+                    audioSource.Stop();
+                }
+
+                if (particleInstance != null) 
+                {
+                    Destroy(particleInstance);
+                    particleInstance = null;
+                }
             }
         }
     }
@@ -166,5 +202,14 @@ public class PacStudentController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private IEnumerator PlaySound()
+    {
+        while (isMove)
+        {
+            audioSource.Play();
+            yield return new WaitForSeconds(soundInterval);
+        }
     }
 }
