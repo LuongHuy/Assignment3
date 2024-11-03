@@ -12,14 +12,21 @@ public class AudioManager1 : MonoBehaviour
     void Start()
     {
         bgm = GetComponent<AudioSource>();
+        StartCoroutine(DelayMusic());
+    }
+    private IEnumerator DelayMusic()
+    {
+        while (!GameManager.instance.isPlaying)
+        {                     
+                yield return null;
+                continue;        
+        }
         NextSong();
     }
-
     public void NextSong()
     {
         bgm.clip = Musics[curSong];
         bgm.Play();
-        curSong++;
         StartCoroutine(WaitSongEnd());
     }
     private IEnumerator WaitSongEnd()
