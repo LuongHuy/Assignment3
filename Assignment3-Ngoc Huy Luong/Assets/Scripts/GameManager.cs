@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,11 +29,18 @@ public class GameManager : MonoBehaviour
     {
         IngameUI.instance.LiveUI.UpdateLiveUI(lives);
         IngameUI.instance.gameOver.SetActive(false);
+        IngameUI.instance.Timer.StartTimer();
     }
 
     public void GameOver()
     {
-        Debug.Log("GameOver");
         IngameUI.instance.GameOverUI(true);
+        StartCoroutine(DelayToMainMenu());
+    }
+
+    public IEnumerator DelayToMainMenu()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadSceneAsync(0);
     }
 }

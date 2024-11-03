@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GhostManager : MonoBehaviour
 {
-
+    public string state;
+    
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

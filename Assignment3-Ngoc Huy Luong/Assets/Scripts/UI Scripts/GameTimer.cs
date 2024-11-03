@@ -6,14 +6,15 @@ using UnityEngine;
 public class GameTimer : MonoBehaviour
 {
     public TextMeshProUGUI timerText; 
-    private float timeElapsed;
+    public float timeElapsed;
     private bool isRunning;
+    private bool isCountdown;
 
     void Start()
     {
-        timeElapsed = 0f;
-        isRunning = true; 
-        UpdateTimerText(); 
+        timeElapsed = 0f;       
+        UpdateTimerText();
+        timerText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -27,6 +28,16 @@ public class GameTimer : MonoBehaviour
             timeElapsed += Time.deltaTime; 
             UpdateTimerText(); 
         }
+        else if (isCountdown)
+        {
+            timeElapsed -= Time.deltaTime;
+            UpdateTimerText();
+            if(timeElapsed < 0f)
+            {
+                isCountdown = false;
+                timerText.gameObject.SetActive(false);
+            }
+        }
     }
 
     void UpdateTimerText()
@@ -39,6 +50,18 @@ public class GameTimer : MonoBehaviour
                          (seconds < 10 ? "0" + seconds : seconds.ToString());
     }
 
+    public void Startcountdown(float countdowntime)
+    {
+        timeElapsed = countdowntime;
+        isCountdown = true;
+        timerText.gameObject.SetActive(true);
+    }
+
+    public void StartTimer()
+    {
+        isRunning = true;
+        timerText.gameObject.SetActive(true);
+    }
     public void StopTimer()
     {
         isRunning = false;
