@@ -21,40 +21,28 @@ public class GhostDirectionControl : MonoBehaviour
         animControl.SetTrigger(directions[curDirection]);
         SetState("IsWalk");
         SetParameter(GhostNumber);
-        StartCoroutine(StateChange());
-        StartCoroutine(DirectionChange());
     }
-    private void SetState(string state)
+    public void SetState(string state)
     {
         foreach (string s in states)
         {
             animControl.SetBool(s,false);
         }
         animControl.SetBool(state,true);
+        if (state == "IsScare")
+        {
+            StartCoroutine(RevertStateToNormal());
+        }
+        
+    }
+    public IEnumerator RevertStateToNormal()
+    {
+        yield return new WaitForSeconds(10f);
+        SetState("IsWalk");
     }
 
     private void SetParameter(int value)
     {
         animControl.SetInteger("GhostNo", value);
-    }
-
-    private IEnumerator StateChange()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(stateInterval);
-            curState = (curState + 1) % states.Length;
-            SetState(states[curState]);
-        }
-    }
-
-    private IEnumerator DirectionChange()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(directionInterval);
-            curDirection = (curDirection + 1) % directions.Length;
-            animControl.SetTrigger(directions[curDirection]);
-        }    
     }
 }

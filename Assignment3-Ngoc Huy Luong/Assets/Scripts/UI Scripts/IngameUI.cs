@@ -9,11 +9,12 @@ public class IngameUI : MonoBehaviour
    public static IngameUI instance;
     private int score;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI scareText;
-    public GameObject Timer;
+    public GameTimer scare;
+    public GameTimer Timer;
     public LiveUI LiveUI;
     public Image Exit;
     public GameObject gameOver;
+    
     
     private void Awake()
     {
@@ -31,16 +32,26 @@ public class IngameUI : MonoBehaviour
     public void ToggleUI (bool isShow)
     {
         scoreText.gameObject.SetActive(isShow);
-        scareText.gameObject.SetActive(isShow);
+        scare.gameObject.SetActive(isShow);
         LiveUI.gameObject.SetActive(isShow);
-        Timer.SetActive(isShow);
+        Timer.gameObject.SetActive(isShow);
     }
     public void GameOverUI(bool isShow)
     {
+        UpdateHighScore();
         GameManager.instance.isPlaying = false;
         ToggleUI(false);
         gameOver.SetActive(true);
-        Exit.gameObject.SetActive(false);
+        Exit.gameObject.SetActive(false);       
     }
    
+    public void UpdateHighScore()
+    {
+        int latestHighScore = PlayerPrefs.GetInt("highscore", 0);
+        if (score > latestHighScore)
+        {
+            PlayerPrefs.SetInt("highscore", score);
+            PlayerPrefs.SetFloat("Timer", Timer.timeElapsed);
+        }
+    }
 }
