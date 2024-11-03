@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class GhostControl : MonoBehaviour
 {
-    public GameObject ghost1, ghost2, ghost3, ghost4;
+    public GhostDirectionControl[] ghostDirectionControls;
+    public static GhostControl instance;
 
+    private void Awake()
+    {
+         instance = this;
+    }
 
     public GameObject GetTileAtMapPosition(int mapX, int mapY)
     {
@@ -21,9 +26,17 @@ public class GhostControl : MonoBehaviour
 
     private void Start()
     {
-        ghost1.transform.position = GetTileAtMapPosition(10, 17).transform.position;
-        ghost2.transform.position = GetTileAtMapPosition(12, 17).transform.position;
-        ghost3.transform.position = GetTileAtMapPosition(14, 17).transform.position;
-        ghost4.transform.position = GetTileAtMapPosition(16, 17).transform.position;
+        ghostDirectionControls[0].transform.position = GetTileAtMapPosition(10, 17).transform.position;
+        ghostDirectionControls[1].transform.position = GetTileAtMapPosition(12, 17).transform.position;
+        ghostDirectionControls[2].transform.position = GetTileAtMapPosition(14, 17).transform.position;
+        ghostDirectionControls[3].transform.position = GetTileAtMapPosition(16, 17).transform.position;
+    }
+
+    public void SetState(string state)
+    {
+        for (int i = 0; i < ghostDirectionControls.Length; i++)
+        {
+            ghostDirectionControls[i].SetState(state);
+        }
     }
 }
