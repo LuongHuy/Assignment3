@@ -15,8 +15,13 @@ public class PacChangeDirection : MonoBehaviour
     }
     private IEnumerator DirectionChange()
     {
-        while (true) 
+        while (true)
         {
+            if (!GameManager.instance.isPlaying)
+            {
+                yield return null;
+                continue;
+            }
             if (!IsDead)
             {
                 animControl.SetBool("IsWalkLeft", false);

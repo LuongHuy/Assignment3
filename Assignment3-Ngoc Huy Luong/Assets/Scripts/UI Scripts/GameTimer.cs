@@ -18,6 +18,10 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.instance.isPlaying)
+        {
+            return;
+        }
         if (isRunning)
         {
             timeElapsed += Time.deltaTime; 

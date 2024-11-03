@@ -39,18 +39,25 @@ public class PacStudentController : MonoBehaviour
     void Start()
     {
         tileBase = LevelGenerator.instance.tileBase;
-
-        currentX = 1;
-        currentY = 1; 
-        transform.position = GetTileAtMapPosition(currentX, currentY).transform.position;
-        targetPosition = transform.position;
+        RestartPosition();
         audioSource = GetComponent<AudioSource>();
 
     }
-
+    public void RestartPosition()
+    {
+        currentX = 1;
+        currentY = 1;
+        transform.position = GetTileAtMapPosition(currentX, currentY).transform.position;
+        targetPosition = transform.position;
+        currentInput = KeyCode.None;
+    }
     void Update()
     {
-
+        if (!GameManager.instance.isPlaying)
+        {
+            return;
+        }
+        
         if (Input.GetKeyDown(KeyCode.W))
         {
             currentInput = KeyCode.W;

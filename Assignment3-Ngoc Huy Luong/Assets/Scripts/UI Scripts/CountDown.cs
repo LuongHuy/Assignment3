@@ -12,7 +12,8 @@ public class CountDown : MonoBehaviour
   
     void Start()
     {
-        StartCoroutine(StartCountDown()); 
+        StartCoroutine(StartCountDown());
+        IngameUI.instance.ToggleUI(false);
     }
 
     private IEnumerator StartCountDown()
@@ -29,6 +30,8 @@ public class CountDown : MonoBehaviour
         goText.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         goText.gameObject.SetActive(false);
+        GameManager.instance.isPlaying = true;
+        IngameUI.instance.ToggleUI(true);
     }
  
     void Update()
