@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1032643027515341981}
   - component: {fileID: 2393356388469673254}
   - component: {fileID: 7963502880967553028}
+  - component: {fileID: 8758153806799267193}
+  - component: {fileID: 538959518260213675}
   m_Layer: 0
   m_Name: Ghost1
   m_TagString: Untagged
@@ -124,3 +126,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animControl: {fileID: 2393356388469673254}
   GhostNumber: 1
+--- !u!58 &8758153806799267193
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3905051968731987732}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0018050671, y: -0.009023786}
+  m_Radius: 0.40502918
+--- !u!114 &538959518260213675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3905051968731987732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321597142a51da7499f262d08cbd18f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

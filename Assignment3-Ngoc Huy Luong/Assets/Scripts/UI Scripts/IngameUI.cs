@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IngameUI : MonoBehaviour
 {
    public static IngameUI instance;
     private int score;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scareText;
+    public GameObject Timer;
+    public LiveUI LiveUI;
+    public Image Exit;
+    public GameObject gameOver;
+    
     private void Awake()
     {
         instance = this;
@@ -21,4 +28,19 @@ public class IngameUI : MonoBehaviour
         score += value;
         scoreText.text = "Score: " + score;
     }
+    public void ToggleUI (bool isShow)
+    {
+        scoreText.gameObject.SetActive(isShow);
+        scareText.gameObject.SetActive(isShow);
+        LiveUI.gameObject.SetActive(isShow);
+        Timer.SetActive(isShow);
+    }
+    public void GameOverUI(bool isShow)
+    {
+        GameManager.instance.isPlaying = false;
+        ToggleUI(false);
+        gameOver.SetActive(true);
+        Exit.gameObject.SetActive(false);
+    }
+   
 }
